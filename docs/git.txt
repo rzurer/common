@@ -1,0 +1,7 @@
+git init
+
+git push origin master
+
+1. rename git repo on github
+2. git remote rm origin
+3. git remote add origin   https://github.com/rzurer/thumbnailCarousel.git
