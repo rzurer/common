@@ -66,6 +66,10 @@ exports.common = function (storage) {
 				value: value
 			});
 		},
+		disableControl : function (control, opacity) {
+			control.unbind("click");
+			control.css('opacity', opacity || '0.3');
+		},
 		disableControls : function (controls, opacity) {
 			controls.forEach(function (control) {
 				control.unbind("click");
