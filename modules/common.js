@@ -1,7 +1,31 @@
 "use strict";
 exports.common = function (storage) {
-	var result;
-	result = {
+	var that;
+	that = {
+		indexOfFirstMatch : function (array, predicate) {
+			var i, element;
+			for (i = 0; i < array.length; i += 1) {
+				element = array[i];
+				if (predicate(element)) {
+					return i;
+				}
+			}
+		},
+		indexOfLastMatch : function (array, predicate) {
+			var i, element;
+			for (i = array.length - 1; i >= 0; i -= 1) {
+				element = array[i];
+				if (predicate(element)) {
+					return i;
+				}
+			}
+		},
+		indicesOfMatch : function (array, predicate) {
+			return {
+				first : that.indexOfFirstMatch(array, predicate),
+				last : that.indexOfLastMatch(array, predicate)
+			};
+		},
 		getPropertyValue: function (array, propertyName) {
 			var value;
 			array.forEach(function (element, index) {
@@ -74,22 +98,22 @@ exports.common = function (storage) {
 			}
 		},
 		getObjectInfo: function (obj) {
-			var prop, result = [];
+			var prop, that = [];
 			if (!obj) {
-				return result;
+				return that;
 			}
 			for (prop in obj) {
 				if (obj.hasOwnProperty(prop)) {
-					result.push({name : prop, value : obj[prop]});
+					that.push({name : prop, value : obj[prop]});
 				}
 			}
-			return result;
+			return that;
 		},
 		getPropertyCount: function (obj) {
-			return result.getObjectInfo(obj).length;
+			return that.getObjectInfo(obj).length;
 		},
 		propertiesExist: function (obj) {
-			return result.getPropertyCount(obj) > 0;
+			return that.getPropertyCount(obj) > 0;
 		},
 		showToaster : function (parent, toaster, text, callback) { //tested
 			var left, top, width;
@@ -124,9 +148,9 @@ exports.common = function (storage) {
 		},
 		getFromOrPlaceInLocalStorage : function (name, createFunction) {
 			if (!storage[name]) {
-				result.placeInLocalStorage(name, createFunction());
+				that.placeInLocalStorage(name, createFunction());
 			}
-			return result.getFromLocalStorage(name);
+			return that.getFromLocalStorage(name);
 		},
 		scrutinize : function (obj, silent) {
 			var property, text;
@@ -143,5 +167,5 @@ exports.common = function (storage) {
 		},
 
 	};
-	return result;
+	return that;
 };
