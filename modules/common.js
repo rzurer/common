@@ -2,6 +2,16 @@
 exports.common = function (storage) {
 	var that;
 	that = {
+		getCurrentDate : function (dayFirst) {
+			var date, day, month, year, monthString, dayString;
+			date = new Date();
+			day = date.getDate();
+			month = date.getMonth() + 1;
+			monthString = (String(month).length < 2 ? '0' : '') + month;
+			dayString = (String(day).length < 2 ? '0' : '') + day;
+			year = date.getFullYear();
+			return dayFirst ? dayString + '/' + monthString +  '/' + year : monthString + '/' + dayString +  '/' + year;
+		},
 		indexOfFirstMatch : function (array, predicate) {
 			var i, element;
 			for (i = 0; i < array.length; i += 1) {
