@@ -7,3 +7,5 @@ git push origin master
 1. rename git repo on github
 2. git remote rm origin
 3. git remote add origin   https://github.com/rzurer/thumbnailCarousel.git
+
+This is an edit to test git push origin master
